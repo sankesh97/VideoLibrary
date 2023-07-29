@@ -10,6 +10,7 @@ import { CategoriesProvider } from './Context/CategoriesContext.jsx';
 import { VideosProvider } from './Context/VideosContext.jsx';
 import { WatchLaterProvider } from './Context/WatchLaterContext.jsx';
 import { NotesProvider } from './Context/NotesContext.jsx';
+import { PlayListsProvider } from './Context/PlayListsContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,7 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <VideosProvider>
           <WatchLaterProvider>
             <NotesProvider>
-              <App />
+              <PlayListsProvider>
+                <App />
+              </PlayListsProvider>
             </NotesProvider>
           </WatchLaterProvider>
         </VideosProvider>

@@ -1,32 +1,32 @@
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 import useLocalStorage from 'use-local-storage';
 
-const WatchLaterContext = createContext();
+const PlayListsContext = createContext();
 
-const WatchLaterProvider = ({ children }) => {
-  const [WatchLaterList, setWatchLaterList] = useLocalStorage('WatchLater', []);
+const PlayListsProvider = ({ children }) => {
+  const [PlayListList, setPlayListList] = useLocalStorage('WatchLater', []);
 
-  const addToWatchList = (video) => {
-    setWatchLaterList((prevState) =>
+  const addPlayList = (newPlaylist) => {
+    setPlayListList((prevState) =>
       prevState.filter((video) => video._id !== video._id)
-        ? [...prevState, video]
+        ? [...prevState, newPlaylist]
         : [...prevState]
     );
   };
 
-  const RemoveFromWatchList = (id) => {
-    setWatchLaterList((prevState) => [
+  const RemovePlayList = (id) => {
+    setPlayListList((prevState) => [
       ...prevState.filter((video) => video._id !== id),
     ]);
   };
 
   return (
-    <WatchLaterContext.Provider
-      value={{ WatchLaterList, addToWatchList, RemoveFromWatchList }}
+    <PlayListsContext.Provider
+      value={{ PlayListList, addPlayList, RemovePlayList }}
     >
       {children}
-    </WatchLaterContext.Provider>
+    </PlayListsContext.Provider>
   );
 };
 
-export { WatchLaterContext, WatchLaterProvider };
+export { PlayListsContext, PlayListsProvider };
